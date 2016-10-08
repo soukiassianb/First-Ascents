@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Climbing the highest mountains in the world</title>
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,700,900,600,300|Volkhov:400,700,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Cardo|EB+Garamond|Source+Serif+Pro" rel="stylesheet">
+    <style media="screen">
+      body{
+        font-family: 'Source Code Pro', sans-serif;
+        background-color: #F7F7F7;
+        color: #373e55;
+      }
+      h1, h2 {
+        font-family: 'Volkhov', serif;
+        text-align: center;
+        /*font-size: 30px;*/
+        letter-spacing: 1px;
+        margin: 20px auto;
+        /*font-weight: 400;*/
+        font-family: 'Volkhov', serif;
+      }
+      #chartContainer{
+        background-color: #EFEFEF;
+        border: 2px solid #EFEFEF;
+        max-width: 900px;
+        padding: 10px;
+        margin: 30px auto;
+        border-radius: 3px;
+        position: relative;
+      }
+      div.text {
+        max-width: 900px;
+        padding: 0px;
+        margin: 30px auto;
+        border-radius: 3px;
+        position: relative;
+        font-family: "Source Serif Pro";
+        font-family: "Cardo";
+        font-size: 1.1em;
+      }
+
+      .custom-dropline{
+        /*stroke: #dd00b3 !important;*/
+      }
+
+      .custom-tooltip{
+        padding: 20px !important;
+        fill: #F7F7F7 !important;
+        stroke: #dfdfdf !important;
+      }
+      text.custom-tooltip-label{
+        font-size: 0.85em !important;
+        fill: #373e55;
+        font-family: 'Source Code Pro', sans-serif !important;
+      }
+      text.custom-tooltip-label:first-of-type{
+        font-weight: 600;
+        font-size: 1.1em;
+        text-decoration: underline;
+      }
+
+      /*.death-zone{
+        position: absolute;
+        background: red;
+        height: 200px;
+        width: 500px;
+        z-index: -1;
+      }*/
+
+      .custom-gridline g.tick{
+      }
+      .custom-gridline{
+        /*stroke: red !important;*/
+      }
+      .dimple-custom-axis-label,
+      .dimple-custom-axis-title{
+        fill:#373e55;
+        font-family: 'Source Code Pro', sans-serif !important;
+        font-size: 0.9em !important;
+      }
+
+
+    </style>
+  </head>
+  <body>
+    <br>
+    <h1>First Ascents: Climbing the highest mountains in the world</h1>
+    <!-- <h3>by Benjamin Soukiassian</h3> -->
+    <br>
+  <div id="chartContainer">
+    <!-- <div class="death-zone"></div> -->
+  </div>
+
+  <div class="text">
+    <h2 style="text-align:left;">
+        Climbing the highest mountains in the world,
+        a Historical Perspective.
+    </h2>
+    <!-- <img width="300" src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Hillary_and_tenzing.jpg" alt="" /> -->
+    <!-- <img width="300" src="http://images.nationalgeographic.com/wpf/media-live/photos/000/499/overrides/sir-edmund-hillary-tenzing-norgay_49965_600x450.jpg" alt="" /> -->
+    <img width="200" src="https://upload.wikimedia.org/wikipedia/commons/b/be/Matterhorn_ascent_Dore.jpg" alt="matterhorn-ascent">
+    - Climbing as a sport emerged in Europe in the 1850's. A decade called the "Golden Age of Alpinism".
+    - But was mostly focused on the Alps
+    - No first climb between 1940 and 1950 which correspond to WWII.
+    - All 8000 meters peaks were climbed between 1950 and 1965.
+    - The most popular peaks are also the ones in the death zone.
+    - The most popular peak is Mount Everest, first climbed in 1953.
+
+  </div>
+
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="http://dimplejs.org/dist/dimple.v2.2.0.min.js"></script>
+  <script type="text/javascript">
+    var svg = dimple.newSvg("#chartContainer", 900, 400);
+
+    function draw_chart(data) {
+
+      var myChart = new dimple.chart(svg, data);
+      myChart.setBounds(60, 50, 800, 305);
+      myChart.customClassList.tooltipDropLine = 'custom-dropline';
+      myChart.customClassList.tooltipBox = 'custom-tooltip';
+      myChart.customClassList.tooltipLabel = 'custom-tooltip-label';
+      myChart.customClassList.gridline = 'custom-gridline';
+
+
+      // myChart.noFormats = true;
+      var color1 = "#373e55";
+      var color2 = "#582e4b";
+      myChart.defaultColors = [
+          new dimple.color(color2),
+          new dimple.color(color1),
+      ];
+
+
+      var x = myChart.addTimeAxis("x", "First ascent");
+      x.addOrderRule("First ascent");
+      x.dateParseFormat = "%Y";
+      x.tickFormat = "%Y";
+      x.timeInterval = 5;
+
+      var y  = myChart.addMeasureAxis("y", "Height (m)");
+      y.overrideMin = 7000;
+      y.overrideMax = 9000;
+      y.tickFormat = 'd';
+
+
+      z = myChart.addMeasureAxis("z", "Scaled Climbs and Attempts");
+      // z.tooltipDropLine = "red"
+      // x.tooltipDropLine = false;
+
+
+      var s = myChart.addSeries(["Mountain", "Climbs and Attempts","Death Zone"], dimple.plot.bubble);
+
+      // var m = myChart.addSeries("Death Zone", dimple.plot.area);
+      // m.interpolation = "step";
+      // m.lineWeight = 1;
+
+      // myChart.addLegend(60, 10, 1510, 20, "right");
+      // myChart.setStoryboard("Death Zone");
+
+      myChart.draw();
+
+      var gridLines = svg.selectAll('.custom-gridline');
+      gridLines[0].forEach(function(el) {
+        if(el.__data__ == 8000) {
+          debugger;
+          el.style['stroke'] = color2;
+          el.style['opacity'] = 0.3;
+          el.style['stroke-width'] = 2;
+          el.style['stroke-dasharray'] = 6, 6;
+          console.log(el);
+        }
+      })
+      // .map(function(line) {
+        // if(line.__data__ == 8000) {
+          // console.log(line).__data__;
+        // }
+        // console.log(line).__data__;
+        // return line;
+      // })
+
+      debugger;
+    }
+
+    function clean(n) {
+      n = parseInt(n.replace(/[^\/\d]/g,''));
+      if (n > 0){
+        return n;
+      } else {
+        return 1;
+      }
+    }
+
+    d3.csv("Mountains.csv", function(data) {
+      data = data.map(function(el) {
+        // el['Ascents bef. 2004']
+        el['Climbs and Attempts'] = clean(el['Ascents bef. 2004']) + clean(el['Failed attempts bef. 2004']);
+        // el['Failure Rate'] = clean(el['Failed attempts bef. 2004']) / clean(el['Ascents bef. 2004']);
+        el['Scaled Climbs and Attempts'] = el['Climbs and Attempts'] + 10;
+
+        if (parseInt(el['Height (m)']) > 8000) {
+          el['Death Zone'] = "Yes";
+        } else {
+          el['Death Zone'] = "No";
+        }
+        return el;
+      });
+
+      data = data.filter(function(el) {
+        // removing mountains marked as unclimbed
+        return el['First ascent'] !== 'unclimbed';
+      });
+      draw_chart(data);
+    });
+  </script>
+  </body>
+</html>
