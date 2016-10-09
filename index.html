@@ -11,14 +11,29 @@
         background-color: #F7F7F7;
         color: #373e55;
       }
-      h1, h2 {
+      h1, h2 , h3{
         font-family: 'Volkhov', serif;
-        text-align: center;
+        /*text-align: center;*/
         /*font-size: 30px;*/
         letter-spacing: 1px;
         margin: 20px auto;
         /*font-weight: 400;*/
         font-family: 'Volkhov', serif;
+      }
+      h3{
+          /*font-weight: 300 !important;*/
+      }
+      a {
+          -moz-transition-duration: 0.1s;
+          -o-transition-duration: 0.1s;
+          -webkit-transition-duration: 0.1s;
+          transition-duration: 0.1s;
+          border-bottom: 2px solid #d403ac;
+          text-decoration: none;
+          color:inherit;
+      }
+      a:hover {
+          background-color: #d403ac;
       }
       #chartContainer{
         background-color: #EFEFEF;
@@ -29,12 +44,13 @@
         border-radius: 3px;
         position: relative;
       }
-      div.text {
-        max-width: 900px;
-        padding: 0px;
-        margin: 30px auto;
-        border-radius: 3px;
-        position: relative;
+      div.container{
+          max-width: 900px;
+          padding: 0px;
+          margin: 30px auto;
+          position: relative;
+      }
+      div.text p{
         font-family: "Source Serif Pro";
         font-family: "Cardo";
         font-size: 1.1em;
@@ -60,6 +76,15 @@
         text-decoration: underline;
       }
 
+      div.separator {
+            width: 60%;
+            margin: 50px auto;
+            height: 2px;
+            background-color: #979ba7;
+            opacity: 0.1;
+            display: block;
+        }
+
       /*.death-zone{
         position: absolute;
         background: red;
@@ -80,32 +105,73 @@
         font-size: 0.9em !important;
       }
 
+      figcaption {
+          font-size: 0.8em;
+          text-align: center;
+          opacity: 0.7;
+      }
+
 
     </style>
   </head>
   <body>
     <br>
-    <h1>First Ascents: Climbing the highest mountains in the world</h1>
-    <!-- <h3>by Benjamin Soukiassian</h3> -->
-    <br>
+    <div class="container">
+        <h1>First Ascents</h1>
+        by <a href="http://soukiassian.me">Benjamin Soukiassian</a>
+    </div>
   <div id="chartContainer">
     <!-- <div class="death-zone"></div> -->
   </div>
 
-  <div class="text">
+  <div class="container text">
     <h2 style="text-align:left;">
-        Climbing the highest mountains in the world,
+        Climbing the Highest Mountains in the World,
         a Historical Perspective.
     </h2>
-    <!-- <img width="300" src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Hillary_and_tenzing.jpg" alt="" /> -->
-    <!-- <img width="300" src="http://images.nationalgeographic.com/wpf/media-live/photos/000/499/overrides/sir-edmund-hillary-tenzing-norgay_49965_600x450.jpg" alt="" /> -->
-    <img width="200" src="https://upload.wikimedia.org/wikipedia/commons/b/be/Matterhorn_ascent_Dore.jpg" alt="matterhorn-ascent">
-    - Climbing as a sport emerged in Europe in the 1850's. A decade called the "Golden Age of Alpinism".
-    - But was mostly focused on the Alps
-    - No first climb between 1940 and 1950 which correspond to WWII.
-    - All 8000 meters peaks were climbed between 1950 and 1965.
-    - The most popular peaks are also the ones in the death zone.
-    - The most popular peak is Mount Everest, first climbed in 1953.
+    <p>
+        It is said to be a 1492 climb that led Antoine de Ville, a French Lord, to the top on Mont Aiguille that marks the beginning of mountaineering. But it really took off in the mid 1850's Europe, during a decade dubbed the Golden Age of Alpinism. From 1854 to 1865, English, French and Swiss alpinist climbed many major peaks in the Alps and turned the dubious activity into a sport.
+        <br><br>
+        From there on, the race to climb big mountains was on. Equipment and technical expertise started to improve, and the climbers' grew more ambitious. However we must wait for the first half of the 20th century to see the highest mountains in the world start being climbed.
+        <br><br>
+        Indeed, it is apparent while exploring the dataset used for this work, which is based on a list of the world's highest peaks, that most >7000 meters peaks were climbed after 1930.
+        <br><br>
+        Our visualization starts with the Jongsong Peak, summited by a German expedition on June 2 1930. The highest climbed peak in the world during about a year until the ascent of the Kamet on June 21 1931.
+        <br><br>
+        The Kamet was then topped by the Nanda Devi, climbed in 1936. It stayed the highest peak ever climbed 14 years, until 1950.
+        From 1939 to 1950, none of the highest peaks were climbed. That is unsurprising given that the period also correspond to the WWII and that most of the expeditions were still led by European climbers.
+        <br><br>
+        On July 3 1950, Maurice Herzog reached at his first attempt the top of the Annapurna, the first 8000 meters ever climbed. The climb was done without supplemental oxygen. A remarkable feat given that above 8000 meters, in what is called the <b>death zone</b>, the air contains one third of the oxygen at sea level. Herzog wrote about the climb in a book, <i>Annapurna</i>, which to this day is the most popular mountaineering book ever written.
+        <br><br>
+        In 1953, a historical year for the climbing community, both the Nanga Parbat, a 8126 meters high peak, and more famously Mount Everest, the highest mountain in the world at 8848 meters, were climbed.
+        <br><br>
+        Hermann Buhl, an austrian climber, reached on July 3 1953, the top of Nanga Parbat alone and without supplemental oxygen after his climbing partner failed to keep up with his pace.
+        <!-- <img width="60%" style="margin:5px;float:left; left:-20px; position:relative;" src="http://mondedeptitsbonshommes.com/wp-content/uploads/173027.jpg" alt=""> -->
+    </p>
+        <figure style="margin:10px;float:left; left:-20px; position:relative; width:60%">
+          <img width="100%"  src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Hillary_and_tenzing.jpg" alt=""/>
+          <figcaption>Edmund Hillary and Tensing Norgay</figcaption>
+        </figure>
+        <p>
+        One month earlier, on May 29th 1953, history was made when Edmund Hillary a New Zealand mountaineer, and Tensing Norgay a Nepalese Sherpa, climbed Mount Everest by the south col.
+        <!-- <img width="20%" style="float:left;" src="https://d3l2rivt3pqnj2.cloudfront.net/i/prints/lg/9/8/98547.jpg" alt=""> -->
+        <br><br>
+        Between 1950 and 1965, all 8000 meters peaks were climbed, and before 1996, most of the 7200 meters peaks too.
+        <br><br>
+        Since being the first on the top mountain is often not possible anymore, the mountaineering community has been pursuing other challenges: climbing without supplemental oxygen, climbing through new routes, climbing solo, climbing faster than previous expeditions and sometimes all of the above.
+        <br><br>
+        Higher does not also always mean harder, for instance in 2011 three American Alpinists,  Conrad Anker, Jimmy Chin, and Renan Ozturk, reached for the first time the top of Mount Meru, an “only” 6660 meters peak through a near vertical route, the Shark's Fin, considered the hardest in the world. A <a target="_blank" href="http://www.merufilm.com">movie</a> was made of the expedition.
+        <br><br>
+        But those kind of expeditions are the exception, not the rule. The highest peaks are also the most popular, a phenomenon shown by our visualization. The most popular of the “high” mountains clearly being Mount Everest.
+        <br><br>
+        The high and famous peaks are taken by storm by commercial expeditions, especially Mount Everest. This sometimes lead to overcrowded climbing routes, which can slow climbers down. A dangerous situation since in the mountains climbing speed is key to survival.
+    </p>
+    <div class="separator">&nbsp;</div>
+    <h3>About the dataset</h3>
+    <p>The Dataset is publicly available <a href="https://www.kaggle.com/abcsds/highest-mountains/">here</a>, the data was scraped from Wikipedia's list of the world's highest mountains.</p>
+
+    <h3>About the visualization</h3>
+    <p>Built using d3, dimple.js and a hefty dose of custom css.</p>
 
   </div>
 
@@ -150,7 +216,7 @@
       // x.tooltipDropLine = false;
 
 
-      var s = myChart.addSeries(["Mountain", "Climbs and Attempts","Death Zone"], dimple.plot.bubble);
+      var s = myChart.addSeries(["Mountain","Ascents bef. 2004", "Climbs and Attempts","Death Zone"], dimple.plot.bubble);
 
       // var m = myChart.addSeries("Death Zone", dimple.plot.area);
       // m.interpolation = "step";

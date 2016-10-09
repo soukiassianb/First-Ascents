@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <style media="screen">
+      body{
+        font-family: 'Source Code Pro', sans-serif;
+        background-color: #F7F7F7;
+        color: #373e55;
+      }
+      h1, h2 , h3{
+        font-family: 'Volkhov', serif;
+        /*text-align: center;*/
+        /*font-size: 30px;*/
+        letter-spacing: 1px;
+        margin: 20px auto;
+        /*font-weight: 400;*/
+        font-family: 'Volkhov', serif;
+      }
+      h3{
+          /*font-weight: 300 !important;*/
+      }
+      a {
+          -moz-transition-duration: 0.1s;
+          -o-transition-duration: 0.1s;
+          -webkit-transition-duration: 0.1s;
+          transition-duration: 0.1s;
+          border-bottom: 2px solid #d403ac;
+          text-decoration: none;
+          color:inherit;
+      }
+      a:hover {
+          background-color: #d403ac;
+      }
+      #chartContainer{
+        max-width: 900px;
+        padding: 10px;
+        margin: 30px auto;
+        border-radius: 3px;
+        position: relative;
+      }
+      div.container{
+          max-width: 900px;
+          padding: 0px;
+          margin: 30px auto;
+          position: relative;
+      }
+      div.text p{
+        font-family: "Source Serif Pro";
+        font-family: "Cardo";
+        font-size: 1.1em;
+      }
+
+    </style>
+  </head>
+  <body>
+    <br>
+    <div class="container">
+        <h1>First Ascents (first draft)</h1>
+        by <a href="http://soukiassian.me">Benjamin Soukiassian</a>
+    </div>
+  <div id="chartContainer">
+    <!-- <div class="death-zone"></div> -->
+  </div>
+
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="http://dimplejs.org/dist/dimple.v2.2.0.min.js"></script>
+  <script type="text/javascript">
+    var svg = dimple.newSvg("#chartContainer", 900, 400);
+
+    function draw_chart(data) {
+
+      var myChart = new dimple.chart(svg, data);
+      myChart.setBounds(60, 50, 800, 305);
+
+      var x = myChart.addTimeAxis("x", "First ascent");
+      x.addOrderRule("First ascent");
+
+      var y  = myChart.addMeasureAxis("y", "Height (m)");
+
+      z = myChart.addMeasureAxis("z", "Scaled Climbs and Attempts");
+      var s = myChart.addSeries(["Mountain","Ascents bef. 2004", "Climbs and Attempts","Death Zone"], dimple.plot.bubble);
+
+      myChart.draw();
+
+      var gridLines = svg.selectAll('.custom-gridline');
+      gridLines[0].forEach(function(el) {
+        if(el.__data__ == 8000) {
+          debugger;
+          el.style['stroke'] = color2;
+          el.style['opacity'] = 0.3;
+          el.style['stroke-width'] = 2;
+          el.style['stroke-dasharray'] = 6, 6;
+          console.log(el);
+        }
+      })
+    }
+
+    function clean(n) {
+      n = parseInt(n.replace(/[^\/\d]/g,''));
+      if (n > 0){
+        return n;
+      } else {
+        return 1;
+      }
+    }
+
+    d3.csv("Mountains.csv", function(data) {
+      data = data.map(function(el) {
+        el['Climbs and Attempts'] = clean(el['Ascents bef. 2004']) + clean(el['Failed attempts bef. 2004']);
+        el['Scaled Climbs and Attempts'] = el['Climbs and Attempts'] + 10;
+        if (parseInt(el['Height (m)']) > 8000) {
+          el['Death Zone'] = "Yes";
+        } else {
+          el['Death Zone'] = "No";
+        }
+        return el;
+      });
+
+      data = data.filter(function(el) {
+        // removing mountains marked as unclimbed
+        return el['First ascent'] !== 'unclimbed';
+      });
+      draw_chart(data);
+    });
+  </script>
+  </body>
+</html>
