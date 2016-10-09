@@ -175,8 +175,9 @@
 
   </div>
 
-  <script src="https://d3js.org/d3.v3.min.js"></script>
-  <script src="https://dimplejs.org/dist/dimple.v2.2.0.min.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="http://dimplejs.org/dist/dimple.v2.2.0.min.js"></script>
+
   <script type="text/javascript">
     var svg = dimple.newSvg("#chartContainer", 900, 400);
 
@@ -258,7 +259,15 @@
       }
     }
 
-    d3.csv("Mountains.csv", function(data) {
+
+    var csv_url;
+    if (window.location.href.indexOf("soukiassian") > -1) {
+        csv_url = "http://showmade.s3.amazonaws.com/assets/Mountains.csv"
+    } else {
+        csv_url = "Mountains.csv"
+    }
+
+    d3.csv(csv_url, function(data) {
       data = data.map(function(el) {
         // el['Ascents bef. 2004']
         el['Climbs and Attempts'] = clean(el['Ascents bef. 2004']) + clean(el['Failed attempts bef. 2004']);
