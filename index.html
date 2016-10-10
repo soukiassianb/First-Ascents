@@ -218,9 +218,11 @@
       // m.interpolation = "step";
       // m.lineWeight = 1;
 
+      // myChart.setStoryboard("Death Zone");
+
+
       legend = myChart.addLegend(60, 23, 808, 0, "right");
       legend.fontFamily = 'Source Code Pro';
-      // myChart.setStoryboard("Death Zone");
 
       svg.selectAll("legend-title")
           .data(["Death zone:"])
@@ -245,6 +247,52 @@
             .style("font-weight", 500)
             .style("color", "#76546c !important")
             .text(function (d) { return d; });
+
+        var margin = 75,
+            width = 800 - margin,
+            height = 600 - margin;
+
+
+        // set the stage for the legend with SVG elements
+        var legend = svg.append('g')
+          .attr('class', 'legend')
+          .attr('transform', "translate(" + (width - 160) + "," + 8 + ")")
+          .selectAll('g')
+          .data(['Climbs and Attempts:', ''])
+          .enter().append('g');
+
+        legend.append('circle')
+          .attr('cy', function(d, i) {
+            return 25;
+          })
+          .attr('cx', function(d, i){
+            if(i==0) {
+              return 70;
+            } else {
+              return 140;
+            }
+          })
+          .attr('r', function(d, i){
+            if(i==0) {
+              return 10;
+            } else {
+              return 4;
+            }
+          })
+          .attr('fill', '#5c6174');
+
+        legend.append('text')
+          .style("font-family", 'Source Code Pro')
+          .style("font-weight", 500)
+          .style("font-size", "12px")
+          .attr('y', function(d, i) {
+            return i * 30 + 5;
+          })
+          .attr('x', 3 * 5)
+          .text(function(d) {
+            return d;
+          });
+
 
       myChart.draw();
 
