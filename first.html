@@ -2,7 +2,6 @@
 <html>
   <head>
     <meta charset="utf-8">
-
     <style media="screen">
       body{
         font-family: 'Source Code Pro', sans-serif;
@@ -11,15 +10,9 @@
       }
       h1, h2 , h3{
         font-family: 'Volkhov', serif;
-        /*text-align: center;*/
-        /*font-size: 30px;*/
         letter-spacing: 1px;
         margin: 20px auto;
-        /*font-weight: 400;*/
         font-family: 'Volkhov', serif;
-      }
-      h3{
-          /*font-weight: 300 !important;*/
       }
       a {
           -moz-transition-duration: 0.1s;
@@ -60,10 +53,7 @@
         <h1>First Ascents (first draft)</h1>
         by <a href="http://soukiassian.me">Benjamin Soukiassian</a>
     </div>
-  <div id="chartContainer">
-    <!-- <div class="death-zone"></div> -->
-  </div>
-
+  <div id="chartContainer"></div>
   <script src="js/d3.v3.min.js"></script>
   <script src="js/dimple.v2.2.0.min.js"></script>
   <script type="text/javascript">
@@ -112,6 +102,7 @@
     } else {
         csv_url = "Mountains.csv"
     }
+
     d3.csv(csv_url, function(data) {
       data = data.map(function(el) {
         el['Climbs and Attempts'] = clean(el['Ascents bef. 2004']) + clean(el['Failed attempts bef. 2004']);
@@ -125,7 +116,6 @@
       });
 
       data = data.filter(function(el) {
-        // removing mountains marked as unclimbed
         return el['First ascent'] !== 'unclimbed';
       });
       draw_chart(data);

@@ -13,11 +13,8 @@
       }
       h1, h2 , h3{
         font-family: 'Volkhov', serif;
-        /*text-align: center;*/
-        /*font-size: 30px;*/
         letter-spacing: 1px;
-        margin: 20px auto;
-        /*font-weight: 400;*/
+        margin: 10px auto;
         font-family: 'Volkhov', serif;
       }
       h3{
@@ -115,7 +112,6 @@
     </style>
   </head>
   <body>
-    <br>
     <div class="container">
         <h1>First Ascents</h1>
         by <a href="http://soukiassian.me">Benjamin Soukiassian</a>
@@ -177,7 +173,6 @@
 
   <script src="js/d3.v3.min.js"></script>
   <script src="js/dimple.v2.2.0.min.js"></script>
-
   <script type="text/javascript">
     var svg = dimple.newSvg("#chartContainer", 900, 400);
 
@@ -223,31 +218,45 @@
       // m.interpolation = "step";
       // m.lineWeight = 1;
 
-      // myChart.addLegend(60, 10, 1510, 20, "right");
+      legend = myChart.addLegend(60, 23, 808, 0, "right");
+      legend.fontFamily = 'Source Code Pro';
       // myChart.setStoryboard("Death Zone");
+
+      svg.selectAll("legend-title")
+          .data(["Death zone:"])
+          .enter()
+          .append("text")
+            .attr("x", 760)
+            .attr("y", 13)
+            .style("font-family", 'Source Code Pro')
+            .style("font-weight", 500)
+            .style("font-size", "12px")
+            .text(function (d) { return d; });
+
+      svg.selectAll("death-zone-limit")
+          .data(["Death Zone Limit"])
+          .enter()
+          .append("text")
+            .attr("x", 760)
+            .attr("y", 216)
+            .style("font-family", 'Source Code Pro')
+            .style("font-size", "10px")
+            .style("opacity", "0.7")
+            .style("font-weight", 500)
+            .style("color", "#76546c !important")
+            .text(function (d) { return d; });
 
       myChart.draw();
 
       var gridLines = svg.selectAll('.custom-gridline');
       gridLines[0].forEach(function(el) {
         if(el.__data__ == 8000) {
-          debugger;
           el.style['stroke'] = color2;
           el.style['opacity'] = 0.3;
           el.style['stroke-width'] = 2;
           el.style['stroke-dasharray'] = 6, 6;
-          console.log(el);
         }
-      })
-      // .map(function(line) {
-        // if(line.__data__ == 8000) {
-          // console.log(line).__data__;
-        // }
-        // console.log(line).__data__;
-        // return line;
-      // })
-
-      debugger;
+      });
     }
 
     function clean(n) {
@@ -258,8 +267,6 @@
         return 1;
       }
     }
-
-
     var csv_url;
     if (window.location.href.indexOf("soukiassian") > -1) {
         csv_url = "https://showmade.s3.amazonaws.com/assets/Mountains.csv"
@@ -275,9 +282,9 @@
         el['Scaled Climbs and Attempts'] = el['Climbs and Attempts'] + 10;
 
         if (parseInt(el['Height (m)']) > 8000) {
-          el['Death Zone'] = "Yes";
+          el['Death Zone'] = "In";
         } else {
-          el['Death Zone'] = "No";
+          el['Death Zone'] = "Out";
         }
         return el;
       });
