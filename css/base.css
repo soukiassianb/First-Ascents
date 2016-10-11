@@ -1,0 +1,87 @@
+body{
+  font-family: 'Source Code Pro', sans-serif;
+  background-color: #F7F7F7;
+  color: #373e55;
+}
+h1, h2 , h3{
+  font-family: 'Volkhov', serif;
+  letter-spacing: 1px;
+  margin: 10px auto;
+  font-family: 'Volkhov', serif;
+}
+h3{
+    /*font-weight: 300 !important;*/
+}
+a {
+    -moz-transition-duration: 0.1s;
+    -o-transition-duration: 0.1s;
+    -webkit-transition-duration: 0.1s;
+    transition-duration: 0.1s;
+    border-bottom: 2px solid #d403ac;
+    text-decoration: none;
+    color:inherit;
+}
+a:hover {
+    background-color: #d403ac;
+}
+#chartContainer{
+  background-color: #EFEFEF;
+  border: 2px solid #EFEFEF;
+  max-width: 900px;
+  padding: 10px;
+  margin: 30px auto;
+  border-radius: 3px;
+  position: relative;
+}
+div.container{
+    max-width: 900px;
+    padding: 0px;
+    margin: 30px auto;
+    position: relative;
+}
+div.text p{
+  font-family: "Source Serif Pro";
+  font-family: "Cardo";
+  font-size: 1.1em;
+}
+.custom-tooltip{
+  padding: 20px !important;
+  fill: #F7F7F7 !important;
+  stroke: #dfdfdf !important;
+}
+text.custom-tooltip-label{
+  font-size: 0.85em !important;
+  fill: #373e55;
+  font-family: 'Source Code Pro', sans-serif !important;
+}
+text.custom-tooltip-label:first-of-type{
+  font-weight: 600;
+  font-size: 1.1em;
+  text-decoration: underline;
+}
+
+div.separator {
+      width: 60%;
+      margin: 50px auto;
+      height: 2px;
+      background-color: #979ba7;
+      opacity: 0.1;
+      display: block;
+  }
+.custom-gridline g.tick{
+}
+.custom-gridline{
+  /*stroke: red !important;*/
+}
+.dimple-custom-axis-label,
+.dimple-custom-axis-title{
+  fill:#373e55;
+  font-family: 'Source Code Pro', sans-serif !important;
+  font-size: 0.9em !important;
+}
+
+figcaption {
+    font-size: 0.8em;
+    text-align: center;
+    opacity: 0.7;
+}
