@@ -252,29 +252,32 @@
             width = 800 - margin,
             height = 600 - margin;
 
-
         // set the stage for the legend with SVG elements
         var legend = svg.append('g')
           .attr('class', 'legend')
-          .attr('transform', "translate(" + (width - 160) + "," + 8 + ")")
+          .attr('transform', "translate(" + (width - 130) + "," + 8 + ")")
           .selectAll('g')
-          .data(['Climbs and Attempts:', ''])
-          .enter().append('g');
+          .data(['Climbs &', 'Attempts:'])
+          .enter().append('g')
 
         legend.append('circle')
           .attr('cy', function(d, i) {
-            return 25;
+            if(i==0) {
+              return 0;
+            } else {
+              return 20;
+            }
           })
           .attr('cx', function(d, i){
             if(i==0) {
-              return 70;
+              return 110;
             } else {
-              return 140;
+              return 110;
             }
           })
           .attr('r', function(d, i){
             if(i==0) {
-              return 10;
+              return 8;
             } else {
               return 4;
             }
@@ -286,9 +289,9 @@
           .style("font-weight", 500)
           .style("font-size", "12px")
           .attr('y', function(d, i) {
-            return i * 30 + 5;
+            return i * 20 + 3;
           })
-          .attr('x', 3 * 5)
+          .attr('x', 25)
           .text(function(d) {
             return d;
           });
