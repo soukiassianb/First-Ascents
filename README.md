@@ -2,7 +2,7 @@
 
 Visualization of a dataset of the highest mountains in the world, part of the Data Analyst Nanodegree by Udacity.
 
-Visible live here: [https://soukiassianb.github.io/First-Ascents/](https://soukiassianb.github.io/First-Ascents/)
+Chart and accompanying story live here: [https://soukiassianb.github.io/First-Ascents/](https://soukiassianb.github.io/First-Ascents/)
 
 ## Summary
 Visualization of a dataset of the highest mountains in the world, their first ascents and their "popularity" among climbers.
