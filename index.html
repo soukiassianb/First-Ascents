@@ -74,13 +74,12 @@
     function draw_chart(data) {
 
       var myChart = new dimple.chart(svg, data);
-      myChart.setBounds(60, 50, 800, 305);
-      myChart.customClassList.tooltipDropLine = 'custom-dropline';
-      myChart.customClassList.tooltipBox = 'custom-tooltip';
-      myChart.customClassList.tooltipLabel = 'custom-tooltip-label';
-      myChart.customClassList.gridline = 'custom-gridline';
+          myChart.setBounds(60, 50, 800, 305);
+          myChart.customClassList.tooltipDropLine = 'custom-dropline';
+          myChart.customClassList.tooltipBox = 'custom-tooltip';
+          myChart.customClassList.tooltipLabel = 'custom-tooltip-label';
+          myChart.customClassList.gridline = 'custom-gridline';
 
-      // myChart.noFormats = true;
       var color1 = "#373e55";
       var color2 = "#582e4b";
       myChart.defaultColors = [
@@ -89,28 +88,19 @@
       ];
 
       var x = myChart.addTimeAxis("x", "First ascent");
-      x.addOrderRule("First ascent");
-      x.dateParseFormat = "%Y";
-      x.tickFormat = "%Y";
-      x.timeInterval = 5;
+          x.addOrderRule("First ascent");
+          x.dateParseFormat = "%Y";
+          x.tickFormat = "%Y";
+          x.timeInterval = 5;
 
       var y  = myChart.addMeasureAxis("y", "Height (m)");
-      y.overrideMin = 7000;
-      y.overrideMax = 9000;
-      y.tickFormat = 'd';
+          y.overrideMin = 7000;
+          y.overrideMax = 9000;
+          y.tickFormat = 'd';
 
       z = myChart.addMeasureAxis("z", "Scaled Climbs and Attempts");
-      // z.tooltipDropLine = "red"
-      // x.tooltipDropLine = false;
 
       var s = myChart.addSeries(["Mountain","Ascents bef. 2004", "Climbs and Attempts","Death Zone"], dimple.plot.bubble);
-
-      // var m = myChart.addSeries("Death Zone", dimple.plot.area);
-      // m.interpolation = "step";
-      // m.lineWeight = 1;
-
-      // myChart.setStoryboard("Death Zone");
-
 
       legend = myChart.addLegend(60, 23, 808, 0, "right");
       legend.fontFamily = 'Source Code Pro';
@@ -217,9 +207,7 @@
 
     d3.csv(csv_url, function(data) {
       data = data.map(function(el) {
-        // el['Ascents bef. 2004']
         el['Climbs and Attempts'] = clean(el['Ascents bef. 2004']) + clean(el['Failed attempts bef. 2004']);
-        // el['Failure Rate'] = clean(el['Failed attempts bef. 2004']) / clean(el['Ascents bef. 2004']);
         el['Scaled Climbs and Attempts'] = el['Climbs and Attempts'] + 10;
 
         if (parseInt(el['Height (m)']) > 8000) {

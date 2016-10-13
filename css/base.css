@@ -59,6 +59,9 @@ text.custom-tooltip-label:first-of-type{
   font-size: 1.1em;
   text-decoration: underline;
 }
+text.custom-tooltip-label:last-of-type{
+  display:none !important;
+}
 
 div.separator {
       width: 60%;
