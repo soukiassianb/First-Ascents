@@ -88,3 +88,7 @@ figcaption {
     text-align: center;
     opacity: 0.7;
 }
+
+::selection {
+    background: lightgrey;
+}
