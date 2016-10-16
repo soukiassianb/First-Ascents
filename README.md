@@ -30,8 +30,7 @@ My friend Mickael gave me similar remarks regarding the axis, and also told me t
 I added a legend and a dashed line to show the death zone limit.
 
 ### Udacity Reviewer
-The reviewer from Udacity gave me feedback about how the sizing method I used for bubbles was non-linear, potentially misrepresenting the scale of popularity between different peaks.
-I implemented his recommendation of square-rooting values used for the radius of the circles.
+The reviewer from Udacity gave me feedback about how the sizing method I used for bubbles was non-linear, potentially misrepresenting the scale of popularity between different peaks. I implemented his recommendation of square-rooting values used for the radius of the circles.
 
 ## Ressources
 - http://dimplejs.org/
