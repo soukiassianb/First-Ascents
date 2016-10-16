@@ -54,64 +54,64 @@
 
     function draw_chart(data) {
 
-    var color1 = "#373e55";
-    var color2 = "#582e4b";  
-    var myChart = new dimple.chart(svg, data);
-          myChart.setBounds(60, 50, 800, 305);
-          myChart.customClassList.tooltipDropLine = 'custom-dropline';
-          myChart.customClassList.tooltipBox = 'custom-tooltip';
-          myChart.customClassList.tooltipLabel = 'custom-tooltip-label';
-          myChart.customClassList.gridline = 'custom-gridline';
-          myChart.defaultColors = [
-            new dimple.color(color2),
-            new dimple.color(color1),
-          ];
+      var color1 = "#373e55";
+      var color2 = "#582e4b";  
+      var myChart = new dimple.chart(svg, data);
+            myChart.setBounds(60, 50, 800, 305);
+            myChart.customClassList.tooltipDropLine = 'custom-dropline';
+            myChart.customClassList.tooltipBox = 'custom-tooltip';
+            myChart.customClassList.tooltipLabel = 'custom-tooltip-label';
+            myChart.customClassList.gridline = 'custom-gridline';
+            myChart.defaultColors = [
+              new dimple.color(color2),
+              new dimple.color(color1),
+            ];
 
-      // add x axis
-      var x = myChart.addTimeAxis("x", "First ascent");
-          x.addOrderRule("First ascent");
-          x.dateParseFormat = "%Y";
-          x.tickFormat = "%Y";
-          x.timeInterval = 5;
-      // add y axis
-      var y  = myChart.addMeasureAxis("y", "Height (m)");
-          y.overrideMin = 7000;
-          y.overrideMax = 9000;
-          y.tickFormat = 'd';
+        // add x axis
+        var x = myChart.addTimeAxis("x", "First ascent");
+            x.addOrderRule("First ascent");
+            x.dateParseFormat = "%Y";
+            x.tickFormat = "%Y";
+            x.timeInterval = 5;
+        // add y axis
+        var y  = myChart.addMeasureAxis("y", "Height (m)");
+            y.overrideMin = 7000;
+            y.overrideMax = 9000;
+            y.tickFormat = 'd';
 
-      // add z axis (bubble size)
-      z = myChart.addMeasureAxis("z", "Scaled Climbs and Attempts");
+        // add z axis (bubble size)
+        z = myChart.addMeasureAxis("z", "Scaled Climbs and Attempts");
 
-      // add more infos to tooltips
-      var s = myChart.addSeries(["Mountain","Ascents bef. 2004", "Climbs and Attempts","Death Zone"], dimple.plot.bubble);
+        // add more infos to tooltips
+        var s = myChart.addSeries(["Mountain","Ascents bef. 2004", "Climbs and Attempts","Death Zone"], dimple.plot.bubble);
 
 
-      // set legend
-      legend = myChart.addLegend(60, 23, 808, 0, "right");
-      legend.fontFamily = 'Source Code Pro';
-      svg.selectAll("legend-title")
-          .data(["Death zone:"])
-          .enter()
-          .append("text")
-            .attr("x", 760)
-            .attr("y", 13)
-            .style("font-family", 'Source Code Pro')
-            .style("font-weight", 500)
-            .style("font-size", "12px")
-            .text(function (d) { return d; });
+        // set legend
+        legend = myChart.addLegend(60, 23, 808, 0, "right");
+        legend.fontFamily = 'Source Code Pro';
+        svg.selectAll("legend-title")
+            .data(["Death zone:"])
+            .enter()
+            .append("text")
+              .attr("x", 760)
+              .attr("y", 13)
+              .style("font-family", 'Source Code Pro')
+              .style("font-weight", 500)
+              .style("font-size", "12px")
+              .text(function (d) { return d; });
 
-      svg.selectAll("death-zone-limit")
-          .data(["Death Zone Limit"])
-          .enter()
-          .append("text")
-            .attr("x", 760)
-            .attr("y", 216)
-            .style("font-family", 'Source Code Pro')
-            .style("font-size", "10px")
-            .style("opacity", "0.7")
-            .style("font-weight", 500)
-            .style("color", "#76546c !important")
-            .text(function (d) { return d; });
+        svg.selectAll("death-zone-limit")
+            .data(["Death Zone Limit"])
+            .enter()
+            .append("text")
+              .attr("x", 760)
+              .attr("y", 216)
+              .style("font-family", 'Source Code Pro')
+              .style("font-size", "10px")
+              .style("opacity", "0.7")
+              .style("font-weight", 500)
+              .style("color", "#76546c !important")
+              .text(function (d) { return d; });
 
         var margin = 75,
             width = 800 - margin,
@@ -189,9 +189,9 @@
     // Make the visualization work without server rendering 
     var csv_url;
     if (window.location.href.indexOf("soukiassian") > -1) {
-        csv_url = "https://showmade.s3.amazonaws.com/assets/Mountains.csv"
+        csv_url = "https://showmade.s3.amazonaws.com/assets/Mountains.csv";
     } else {
-        csv_url = "Mountains.csv"
+        csv_url = "Mountains.csv";
     }
 
     d3.csv(csv_url, function(data) {
