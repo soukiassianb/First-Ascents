@@ -56,38 +56,41 @@
 
     function draw_chart(data) {
 
-      var myChart = new dimple.chart(svg, data);
+    var color1 = "#373e55";
+    var color2 = "#582e4b";  
+    var myChart = new dimple.chart(svg, data);
           myChart.setBounds(60, 50, 800, 305);
           myChart.customClassList.tooltipDropLine = 'custom-dropline';
           myChart.customClassList.tooltipBox = 'custom-tooltip';
           myChart.customClassList.tooltipLabel = 'custom-tooltip-label';
           myChart.customClassList.gridline = 'custom-gridline';
+          myChart.defaultColors = [
+            new dimple.color(color2),
+            new dimple.color(color1),
+          ];
 
-      var color1 = "#373e55";
-      var color2 = "#582e4b";
-      myChart.defaultColors = [
-          new dimple.color(color2),
-          new dimple.color(color1),
-      ];
-
+      // add x axis
       var x = myChart.addTimeAxis("x", "First ascent");
           x.addOrderRule("First ascent");
           x.dateParseFormat = "%Y";
           x.tickFormat = "%Y";
           x.timeInterval = 5;
-
+      // add y axis
       var y  = myChart.addMeasureAxis("y", "Height (m)");
           y.overrideMin = 7000;
           y.overrideMax = 9000;
           y.tickFormat = 'd';
 
+      // add z axis (bubble size)
       z = myChart.addMeasureAxis("z", "Scaled Climbs and Attempts");
 
+      // add more infos to tooltips
       var s = myChart.addSeries(["Mountain","Ascents bef. 2004", "Climbs and Attempts","Death Zone"], dimple.plot.bubble);
 
+
+      // set legend
       legend = myChart.addLegend(60, 23, 808, 0, "right");
       legend.fontFamily = 'Source Code Pro';
-
       svg.selectAll("legend-title")
           .data(["Death zone:"])
           .enter()
@@ -116,7 +119,6 @@
             width = 800 - margin,
             height = 600 - margin;
 
-        // set the stage for the legend with SVG elements
         var legend = svg.append('g')
           .attr('class', 'legend')
           .attr('transform', "translate(" + (width - 130) + "," + 8 + ")")
@@ -161,7 +163,8 @@
           });
 
       myChart.draw();
-
+      
+      // death zone limit dashed line  
       var gridLines = svg.selectAll('.custom-gridline');
       gridLines[0].forEach(function(el) {
         if(el.__data__ == 8000) {
@@ -172,7 +175,10 @@
         }
       });
     }
-
+    
+    // clean numbers by removing symbols
+    // and returning 1 for data points whose first ascent
+    // is set but Ascents bef. 2004 equal 0
     function clean(n) {
       n = parseInt(n.replace(/[^\/\d]/g,''));
       if (n > 0){
@@ -181,6 +187,8 @@
         return 1;
       }
     }
+    
+    // Make the visualization work without server rendering 
     var csv_url;
     if (window.location.href.indexOf("soukiassian") > -1) {
         csv_url = "https://showmade.s3.amazonaws.com/assets/Mountains.csv"
@@ -191,7 +199,7 @@
     d3.csv(csv_url, function(data) {
       data = data.map(function(el) {
         el['Climbs and Attempts'] = clean(el['Ascents bef. 2004']) + clean(el['Failed attempts bef. 2004']);
-        el['Scaled Climbs and Attempts'] = el['Climbs and Attempts'] + 10;
+        el['Scaled Climbs and Attempts'] = el['Climbs and Attempts'] + 10;  // field used only for better bubble size.
 
         if (parseInt(el['Height (m)']) > 8000) {
           el['Death Zone'] = "In";
