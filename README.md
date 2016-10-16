@@ -14,7 +14,7 @@ I choosed to plot the data using a bubble chart with years as the X axis and hei
 The vertical axis of the chart is centered around 8000 meters, also called the death zone because of the lack of oxygen above it.
 
 ## Feedback
-While showing the first draft of the chart, I got feedback regarding the range of the axis. Plotting the heights of the peaks with a 0-based axis did not fully capture the variability of height between summits, I then got the idea of plotting around the death zone limit which conveniently did not remove any data points.
+While showing the [first draft](https://soukiassianb.github.io/First-Ascents/first.html) of the chart, I got feedback regarding the range of the axis. Plotting the heights of the peaks with a 0-based axis did not fully capture the variability of height between summits, I then got the idea of plotting around the death zone limit which conveniently did not remove any data points.
 
 ## Ressources
 - http://dimplejs.org/
