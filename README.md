@@ -6,7 +6,7 @@ Chart and accompanying story live here: [https://soukiassianb.github.io/First-As
 
 ## Summary
 Visualization of a dataset of the highest mountains in the world, their first ascents and their "popularity" among climbers.
-Chart built with D3 and dimple.js, using a [dataset](https://www.kaggle.com/abcsds/highest-mountains/) of data scraped from Wikipedia.
+Chart built with D3 and dimple.js, using a [dataset](https://www.kaggle.com/abcsds/highest-mountains/) scraped from Wikipedia.
 I wanted to give a historic perspective on the mountaineering achievements by focusing on the first ascents.
 
 ## Design
